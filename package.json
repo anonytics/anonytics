@@ -1,0 +1,12 @@
+{
+  "name": "anonytics",
+  "version": "0.0.1",
+  "description": "Anonymized web analytics to respect the users' privacy",
+  "repository": "git@github.com:anonytics/anonytics-javascript.git",
+  "author": "Jeppe Reinhold <jeppereinhold@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "anonytics": "^0.0.1"
+  }
+}
