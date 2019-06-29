@@ -1,0 +1,30 @@
+{
+  "name": "@anonytics/monorepo",
+  "version": "0.1.0",
+  "description": "Monorepo for the Anonytics project - Anonymized web analytics to respect the users' privacy",
+  "repository": "git@github.com:anonytics/anonytics-javascript.git",
+  "author": "Jeppe Reinhold <jeppereinhold@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,md,yml}\"",
+    "ok": "yarn alex && yarn format"
+  },
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged",
+      "post-commit": "git reset ."
+    }
+  },
+  "devDependencies": {
+    "alex": "^7.1.0",
+    "husky": "^2.7.0",
+    "prettier": "^1.18.2",
+    "pretty-quick": "^1.11.1",
+    "typescript": "^3.5.2"
+  }
+}
