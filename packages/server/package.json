@@ -1,0 +1,9 @@
+{
+  "name": "@anonytics/server",
+  "version": "0.1.0",
+  "description": "The Anonytics server that securely retrieves and stores anonymous user data",
+  "repository": "https://github.com/anonytics/anonytics-javascript",
+  "author": "Jeppe Reinhold <jeppereinhold@gmail.com>",
+  "license": "MIT",
+  "private": false
+}

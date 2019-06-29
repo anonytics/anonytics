@@ -1,0 +1,9 @@
+{
+  "name": "@anonytics/viewer",
+  "version": "0.1.0",
+  "description": "Reference implementation of the Anonytics interface that shows anonymized user data stored in an Anonytics server",
+  "repository": "https://github.com/anonytics/anonytics-javascript",
+  "author": "Jeppe Reinhold <jeppereinhold@gmail.com>",
+  "license": "MIT",
+  "private": false
+}
