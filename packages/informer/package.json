@@ -5,5 +5,17 @@
   "repository": "https://github.com/anonytics/anonytics-javascript",
   "author": "Jeppe Reinhold <jeppereinhold@gmail.com>",
   "license": "MIT",
-  "private": false
+  "private": false,
+  "source": "src/index.ts",
+  "main": "build/index.js",
+  "umd:main": "build/index.umd.js",
+  "module": "build/index.m.js",
+  "types": "build/index.d.ts",
+  "scripts": {
+    "build": "microbundle",
+    "start": "microbundle watch"
+  },
+  "devDependencies": {
+    "microbundle": "^0.11.0"
+  }
 }
