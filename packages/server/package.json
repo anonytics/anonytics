@@ -5,5 +5,10 @@
   "repository": "https://github.com/anonytics/anonytics-javascript",
   "author": "Jeppe Reinhold <jeppereinhold@gmail.com>",
   "license": "MIT",
-  "private": false
+  "private": false,
+  "scripts": {
+    "lint": "eslint \"src/*.ts\"",
+    "format": "prettier --write \"./{src/*,*}.{js,jsx,ts,tsx,json,md,yml}\"",
+    "typecheck": "tsc --noEmit"
+  }
 }
