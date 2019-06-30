@@ -13,7 +13,8 @@
   "types": "build/index.d.ts",
   "scripts": {
     "build": "microbundle",
-    "start": "microbundle watch"
+    "start": "microbundle watch",
+    "lint": "eslint \"src/*.ts\""
   },
   "devDependencies": {
     "microbundle": "^0.11.0"

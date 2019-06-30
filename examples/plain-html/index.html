@@ -6,6 +6,15 @@
   </head>
 
   <body>
+    <h1>Hello</h1>
+    <!-- Insert below at the end of the <body> tag -->
     <script src="../../packages/informer/build/index.umd.js"></script>
+    <script>
+      initAnon({
+        host: 'my.anonytics-server.io',
+        secret: 'my-super-secret-key',
+      });
+    </script>
+    <!-- End of Anonytics part -->
   </body>
 </html>
