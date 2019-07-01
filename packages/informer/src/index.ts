@@ -3,7 +3,7 @@ export type AnonyticsInformer = (
   context?: Record<string, string>,
 ) => Promise<void>;
 
-export const anon: AnonyticsInformer = async (
+export const inform: AnonyticsInformer = async (
   eventType,
   context,
 ): Promise<void> => {
@@ -19,29 +19,18 @@ interface AnonyticsInitializerConfig {
   secret: string;
   ignorePageLoad?: boolean;
 }
-
 export type AnonyticsInitializer = ({
-  host: hostname,
+  host,
   secret,
   ignorePageLoad,
 }: AnonyticsInitializerConfig) => Promise<void>;
-export const initAnon: AnonyticsInitializer = async ({
+export const init: AnonyticsInitializer = async ({
   host,
   secret,
   ignorePageLoad = false,
 }): Promise<void> => {
   console.log('LOG initing with:', host, secret);
   if (!ignorePageLoad) {
-    anon('pageLoad');
+    inform('pageLoad');
   }
 };
-
-window.anon = anon;
-window.initAnon = initAnon;
-
-declare global {
-  interface Window {
-    anon: AnonyticsInformer;
-    initAnon: AnonyticsInitializer;
-  }
-}
