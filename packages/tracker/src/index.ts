@@ -1,9 +1,9 @@
-export type AnonyticsInformer = (
+export type AnonyticsTracker = (
   eventType: string,
   context?: Record<string, string>,
 ) => Promise<void>;
 
-export const inform: AnonyticsInformer = async (
+export const inform: AnonyticsTracker = async (
   eventType,
   context,
 ): Promise<void> => {

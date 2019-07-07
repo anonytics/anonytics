@@ -12,4 +12,12 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {},
+  overrides: [
+    {
+      files: ['*.test.ts', '__tests__/*'],
+      rules: {
+        '@typescript-eslint/explicit-function-return-type': 'off',
+      },
+    },
+  ],
 };

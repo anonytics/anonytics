@@ -3,7 +3,7 @@
   "eslint.enable": true,
   "eslint.workingDirectories": [
     {
-      "directory": "./packages/informer",
+      "directory": "./packages/tracker",
       "changeProcessCWD": true
     },
     {
