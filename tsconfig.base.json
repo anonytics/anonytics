@@ -16,5 +16,6 @@
     "resolveJsonModule": true,
     "noImplicitReturns": true,
     "pretty": true
-  }
+  },
+  "exclude": ["**/__tests__/*.ts"]
 }

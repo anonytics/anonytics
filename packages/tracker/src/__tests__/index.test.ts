@@ -44,7 +44,7 @@ describe('Tracker', () => {
           pathname: '/some/path',
         },
       }),
-    } as RequestInit);
+    });
 
     // Act - track an event
     await track('testEvent', testEventContext);
@@ -60,7 +60,7 @@ describe('Tracker', () => {
         eventType: 'testEvent',
         context: testEventContext,
       }),
-    } as RequestInit);
+    });
   });
 
   it("should not track a page load when initializing with 'ignorePageLoad' parameter", async () => {
@@ -92,7 +92,7 @@ describe('Tracker', () => {
       body: JSON.stringify({
         eventType: 'testEvent',
       }),
-    } as RequestInit);
+    });
   });
 
   it("should use insecure HTTP when 'disableHttpsAndUseInsecureHttp' parameter is set", async () => {
@@ -116,7 +116,7 @@ describe('Tracker', () => {
       body: JSON.stringify({
         eventType: 'testEvent',
       }),
-    } as RequestInit);
+    });
   });
 
   it('should throw if trying to track without initializing first', async () => {

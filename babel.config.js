@@ -1,5 +1,4 @@
-// only for jest tests, actual transforming and bundling is handled by microbundle
-
+// only for jest tests, actual transforming and bundling is handled by other tools
 module.exports = {
   presets: [
     [

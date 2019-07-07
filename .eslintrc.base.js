@@ -13,8 +13,8 @@ module.exports = {
     ecmaFeatures: {
       modules: true,
     },
+    ecmaVersion: 2018,
   },
-  rules: {},
   overrides: [
     {
       files: ['*.test.ts', '__tests__/*'],
@@ -23,4 +23,5 @@ module.exports = {
       },
     },
   ],
+  rules: { 'no-console': 'error' },
 };

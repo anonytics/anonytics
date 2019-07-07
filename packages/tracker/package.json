@@ -14,10 +14,10 @@
   "scripts": {
     "build": "microbundle --name anon",
     "start": "microbundle watch --name anon",
-    "test": "jest --watch",
-    "test:once": "jest",
-    "test:branch": "jest --changedSince=master",
-    "lint": "eslint \"src/*.ts\"",
+    "test": "cd ../../ && jest --projects packages/tracker --watch",
+    "test:once": "cd ../../ && jest --projects packages/tracker",
+    "test:branch": "cd ../../ && jest --projects packages/tracker --changedSince=master",
+    "lint": "eslint \"src/**/*.ts\"",
     "format": "prettier --write \"./{src/*,*}.{js,jsx,ts,tsx,json,md,yml}\"",
     "typecheck": "tsc --noEmit"
   },
