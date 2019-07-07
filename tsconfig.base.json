@@ -17,5 +17,5 @@
     "noImplicitReturns": true,
     "pretty": true
   },
-  "exclude": ["**/__tests__/*.ts"]
+  "exclude": ["**/__tests__", "**/*.test.ts"]
 }
