@@ -10,6 +10,9 @@ module.exports = {
   plugins: ['@typescript-eslint', 'prettier', 'unicorn'],
   parserOptions: {
     sourceType: 'module',
+    ecmaFeatures: {
+      modules: true,
+    },
   },
   rules: {},
   overrides: [

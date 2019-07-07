@@ -3,34 +3,56 @@ export type AnonyticsTracker = (
   context?: Record<string, string>,
 ) => Promise<void>;
 
-export const inform: AnonyticsTracker = async (
+// export default class AnonyticsTrackerClass {
+//   public static lol(): void {
+//     console.log('hello');
+//   }
+// }
+
+let trackingUrl: string;
+
+export const track: AnonyticsTracker = async (
   eventType,
   context,
 ): Promise<void> => {
-  if (eventType === 'pageLoad') {
-    console.log('LOG PAGE LOAD', context);
-    return;
+  console.log(trackingUrl);
+  if (!trackingUrl) {
+    throw new Error(
+      'Cannot track an Anonytics event before it has been initialized. Please invoke the init() one time before tracking first.',
+    );
   }
-  console.log('LOG INTERACTION', context);
+  fetch(trackingUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      eventType,
+      context,
+    }),
+  });
 };
 
 interface AnonyticsInitializerConfig {
   host: string;
-  secret: string;
+  path?: string;
+  disableHttpsAndUseInsecureHttp?: boolean;
   ignorePageLoad?: boolean;
 }
-export type AnonyticsInitializer = ({
-  host,
-  secret,
-  ignorePageLoad,
-}: AnonyticsInitializerConfig) => Promise<void>;
+export type AnonyticsInitializer = (
+  config: AnonyticsInitializerConfig,
+) => Promise<void>;
+
 export const init: AnonyticsInitializer = async ({
   host,
-  secret,
+  path = '/',
+  disableHttpsAndUseInsecureHttp = false,
   ignorePageLoad = false,
 }): Promise<void> => {
-  console.log('LOG initing with:', host, secret);
+  const protocol = disableHttpsAndUseInsecureHttp ? 'http' : 'https';
+  trackingUrl = `${protocol}://${host}${path}`;
+
   if (!ignorePageLoad) {
-    inform('pageLoad');
+    track('pageLoad', { pathname: location.pathname });
   }
 };
