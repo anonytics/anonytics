@@ -1,14 +1,3 @@
-export type AnonyticsTracker = (
-  eventType: string,
-  context?: Record<string, string>,
-) => Promise<void>;
-
-// export default class AnonyticsTrackerClass {
-//   public static lol(): void {
-//     console.log('hello');
-//   }
-// }
-
 /**
  * The URL that the tracker POSTs to.
  * This is set when init() is called
@@ -43,6 +32,16 @@ const isDoNotTrackEnabled = (): boolean => {
   }
 };
 
+export type AnonyticsTracker = (
+  eventType: string,
+  context?: Record<string, string>,
+) => Promise<void>;
+
+/**
+ * Tracks an event to the anonytics server
+ * @param {string} eventType any string represeting the type of the event, eg. 'click'
+ * @param {object} [context] an object with any extra context information to send, such as button action
+ */
 export const track: AnonyticsTracker = async (
   eventType,
   context,
@@ -71,18 +70,25 @@ export const track: AnonyticsTracker = async (
 interface AnonyticsInitializerConfig {
   host: string;
   path?: string;
-  disableHttpsAndUseInsecureHttp?: boolean;
   ignorePageLoad?: boolean;
+  disableHttpsAndUseInsecureHttp?: boolean;
 }
 export type AnonyticsInitializer = (
   config: AnonyticsInitializerConfig,
 ) => Promise<void>;
 
+/**
+ * Initializer function that must be invoked once before any tracking can occur
+ * @param {string} config.host the host to track the events to, eg. 'localhost' or 'mywebsite.io'
+ * @param {string} [config.path='/'] an optional path the anonytics server is listening on, eg. '/anonytics'
+ * @param {boolean} [config.disableHttpsAndUseInsecureHttp=false] during development, track events over HTTP instead of HTTPS
+ * @param {boolean} [config.ignorePageLoad=false] set this to true to disable auto tracking a 'pageLoad' event immediately after initialization
+ */
 export const init: AnonyticsInitializer = async ({
   host,
   path = '/',
-  disableHttpsAndUseInsecureHttp = false,
   ignorePageLoad = false,
+  disableHttpsAndUseInsecureHttp = false,
 }): Promise<void> => {
   const protocol = disableHttpsAndUseInsecureHttp ? 'http' : 'https';
   trackingUrl = `${protocol}://${host}${

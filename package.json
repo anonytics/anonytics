@@ -14,7 +14,7 @@
     "test:branch": "jest --changedSince=master",
     "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,md,yml}\"",
     "typecheck": "yarn workspaces run typecheck",
-    "ok": "alex && yarn format && yarn lint && yarn typecheck",
+    "ok": "alex && yarn format && yarn lint && yarn typecheck && yarn test:once",
     "clear-modules": "rimraf **/node_modules"
   },
   "private": true,

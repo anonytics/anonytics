@@ -19,6 +19,7 @@ module.exports = {
     {
       files: ['*.test.ts', '__tests__/*'],
       rules: {
+        // we don't want to write return types for all our 'describe' and 'it' blocks
         '@typescript-eslint/explicit-function-return-type': 'off',
       },
     },
