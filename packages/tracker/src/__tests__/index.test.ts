@@ -75,7 +75,7 @@ describe('Tracker', () => {
     // Arrange - initialize with non-default 'path' set
     init({
       host: 'localhost',
-      path: '/some/sub-endpoint',
+      path: 'some/sub-endpoint',
       ignorePageLoad: true,
     });
 
@@ -95,6 +95,30 @@ describe('Tracker', () => {
     } as RequestInit);
   });
 
+  it("should use insecure HTTP when 'disableHttpsAndUseInsecureHttp' parameter is set", async () => {
+    // Arrange - initialize with non-default 'path' set
+    init({
+      host: 'localhost',
+      disableHttpsAndUseInsecureHttp: true,
+      ignorePageLoad: true,
+    });
+
+    // Act - track an event
+    await track('testEvent');
+
+    // Assert - event has been sent to server at specific path
+    expect(fetchMock).toBeCalledTimes(1);
+    expect(fetchMock).toBeCalledWith('http://localhost/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        eventType: 'testEvent',
+      }),
+    } as RequestInit);
+  });
+
   it('should throw if trying to track without initializing first', async () => {
     // Act & Assert - track an event and expect it to throw because Anonytics has not been initialized
     await expect(track('testEvent')).rejects.toThrowError(
@@ -102,58 +126,78 @@ describe('Tracker', () => {
     );
   });
 
-  it('should not track anything if the DoNotTrack flag is set', async () => {
-    // Arrange - initialize and set DoNotTrack flag
-    init({
-      host: 'localhost',
-      ignorePageLoad: true,
+  describe('Do Not Track Flag', () => {
+    beforeEach(() => {
+      // Arrange - initialize and reset all DoNotTrack flags
+      init({
+        host: 'localhost',
+        ignorePageLoad: true,
+      });
+      //@ts-ignore
+      navigator.doNotTrack = undefined;
+      //@ts-ignore
+      window.doNotTrack = undefined;
+      //@ts-ignore
+      navigator.msDoNotTrack = undefined;
+    });
+    it('should track if flag exists in browser, but is disabled by user', async () => {
+      // Arrange - set DoNotTrack flag to disabled
+      //@ts-ignore
+      navigator.doNotTrack = '0';
+
+      // Act - track an event
+      await track('testEvent');
+
+      // Assert - nothing was sent to server because DoNotTrack is set
+      expect(fetchMock).toBeCalled();
     });
 
-    // Arrange - set DoNotTrack (Safari, Edge, IE11)
-    //@ts-ignore
-    window.doNotTrack = '1';
+    it('should not track if flag is set in Chrome and Firefox', async () => {
+      // Arrange - set DoNotTrack flag
+      //@ts-ignore
+      navigator.doNotTrack = '1';
 
-    // Act - track an event
-    await track('testEvent');
+      // Act - track an event
+      await track('testEvent');
 
-    // Assert - nothing was sent to server because DoNotTrack is set (Safari, Edge, IE11)
-    expect(fetchMock).not.toBeCalled();
+      // Assert - nothing was sent to server because DoNotTrack is set
+      expect(fetchMock).not.toBeCalled();
+    });
 
-    // Arrange - set DoNotTrack (Chrome, Firefox)
-    //@ts-ignore
-    window.doNotTrack = undefined;
-    //@ts-ignore
-    navigator.doNotTrack = '1';
+    it('should not track if flag is set in Safari, Edge and IE 11', async () => {
+      // Arrange - set DoNotTrack flag
+      //@ts-ignore
+      window.doNotTrack = '1';
 
-    // Act - track an event
-    await track('testEvent');
+      // Act - track an event
+      await track('testEvent');
 
-    // Assert - nothing was sent to server because DoNotTrack is set (Chrome, Firefox)
-    expect(fetchMock).not.toBeCalled();
+      // Assert - nothing was sent to server because DoNotTrack is set
+      expect(fetchMock).not.toBeCalled();
+    });
 
-    // Arrange - set DoNotTrack (IE10)
-    //@ts-ignore
-    navigator.doNotTrack = undefined;
-    //@ts-ignore
-    navigator.msDoNotTrack = '1';
+    it('should not track if flag is set in IE 10', async () => {
+      // Arrange - set DoNotTrack flag
+      //@ts-ignore
+      navigator.msDoNotTrack = '1';
 
-    // Act - track an event
-    await track('testEvent');
+      // Act - track an event
+      await track('testEvent');
 
-    // Assert - nothing was sent to server because DoNotTrack is set (IE10)
-    expect(fetchMock).not.toBeCalled();
+      // Assert - nothing was sent to server because DoNotTrack is set (Chrome, Firefox)
+      expect(fetchMock).not.toBeCalled();
+    });
   });
 
   /*
-  The following to tests make sure that jest configurations are inherited from 'jest.config.base.js' in the root dir
+  The following two tests make sure that jest configurations are inherited from 'jest.config.base.js' in the root dir
   by checking that the mock function is cleared between tests 
    */
   it("should use 'clearMocks' configuration from base jest config", () => {
     mockFunction();
   });
   it("should use 'clearMocks' configuration from base jest config", () => {
-    mockFunction();
-    // if the mock hadn't been cleared, it would have been called two times by now
-    expect(mockFunction).toBeCalledTimes(1);
+    // if the mock hadn't been cleared, it would have been by now
+    expect(mockFunction).not.toBeCalled();
   });
 });

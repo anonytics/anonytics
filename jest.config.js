@@ -1,8 +1,9 @@
+//@ts-check
+
+const baseConfig = require('./jest.config.base.js');
+
 module.exports = {
-  projects: [
-    {
-      displayName: '@anonytics/tracker',
-      ...require('./packages/tracker/jest.config'),
-    },
-  ],
+  ...baseConfig,
+  projects: ['<rootDir>/packages/*/jest.config.js'],
+  coverageDirectory: '<rootDir>/coverage/',
 };

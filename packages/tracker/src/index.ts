@@ -85,7 +85,9 @@ export const init: AnonyticsInitializer = async ({
   ignorePageLoad = false,
 }): Promise<void> => {
   const protocol = disableHttpsAndUseInsecureHttp ? 'http' : 'https';
-  trackingUrl = `${protocol}://${host}${path}`;
+  trackingUrl = `${protocol}://${host}${
+    path.startsWith('/') ? '' : '/'
+  }${path}`;
 
   if (!ignorePageLoad) {
     track('pageLoad', { pathname: location.pathname });
