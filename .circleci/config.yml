@@ -66,21 +66,17 @@ workflows:
   version: 2
   build-n-test:
     jobs:
-      - yarn/update-cache
+      - yarn/update-cache:
+          name: update-cache
       - yarn/jest:
-          requires:
-            - yarn/update-cache
+          name: jest
       - yarn/type-check:
-          requires:
-            - yarn/update-cache
+          name: type-check
       - yarn/lint:
-          requires:
-            - yarn/update-cache
+          name: lint
       - yarn/run:
           script: format:ci
           name: check-format
-          requires:
-            - yarn/update-cache
       - yarn/run:
           script: build
           name: build
@@ -88,5 +84,6 @@ workflows:
             - yarn/update-cache
       - yarn/run:
           script: bundlesize
+          name: check-bundlesize
           requires:
             - build
