@@ -19,7 +19,7 @@
     "test:branch": "cd ../../ && jest --projects packages/tracker --changedSince=master",
     "lint": "eslint \"src/**/*.ts\"",
     "format": "prettier --write \"./{src/**/*,*}.{js,jsx,ts,tsx,json,md,yml}\"",
-    "typecheck": "tsc --noEmit"
+    "type-check": "tsc --noEmit"
   },
   "devDependencies": {
     "jest-fetch-mock": "^2.1.2",

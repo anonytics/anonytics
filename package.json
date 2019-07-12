@@ -14,9 +14,9 @@
     "test:branch": "jest --changedSince=master",
     "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,md,yml,html}\"",
     "format:ci": "prettier --list-different \"./**/*.{js,jsx,ts,tsx,json,md,yml,html}\"",
-    "typecheck": "yarn workspaces run typecheck",
+    "type-check": "yarn workspaces run type-check",
     "bundlesize": "bundlesize",
-    "ok": "alex && yarn format && yarn lint && yarn typecheck && yarn test:once",
+    "ok": "alex && yarn format && yarn lint && yarn type-check && yarn test:once",
     "clear-modules": "rimraf **/node_modules"
   },
   "private": true,

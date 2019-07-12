@@ -9,6 +9,6 @@
   "scripts": {
     "lint": "eslint \"src/*.ts\"",
     "format": "prettier --write \"./{src/*,*}.{js,jsx,ts,tsx,json,md,yml}\"",
-    "typecheck": "tsc --noEmit"
+    "type-check": "tsc --noEmit"
   }
 }

@@ -11,16 +11,16 @@ jobs:
     working_directory: ~/repo
 
     steps:
-      - yarn/update_dependencies
-      - yarn/jest
-      - yarn/type-check
-      - yarn/lint
+      # - yarn/update_dependencies
+      # - yarn/jest
+      # - yarn/type-check
+      # - yarn/lint
       # format
       # bundlesize
-      # - run:
-      #     name: All JS Packages - Test
-      #     command: |
-      #       yarn test:once
+      - run:
+          name: All JS Packages - Test
+          command: |
+            yarn test:once
       # - run:
       #     name: All JS Packages - Typecheck
       #     command: |
@@ -57,6 +57,9 @@ jobs:
 
 workflows:
   version: 2
-  build-deploy:
+  build:
     jobs:
-      - build
+      - yarn/update-cache
+      - yarn/jest
+      - yarn/type-check
+      - yarn/lint
