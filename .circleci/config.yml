@@ -78,13 +78,15 @@ workflows:
             - yarn/update-cache
       - yarn/run:
           script: format:ci
+          name: check-format
           requires:
             - yarn/update-cache
       - yarn/run:
           script: build
+          name: build
           requires:
             - yarn/update-cache
       - yarn/run:
           script: bundlesize
           requires:
-            - yarn/build
+            - build
