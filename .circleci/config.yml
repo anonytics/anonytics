@@ -3,65 +3,6 @@
 version: 2.1
 orbs:
   yarn: artsy/yarn@2.0.0
-jobs:
-  check-format:
-    docker:
-      - image: circleci/node:10.16.0-browsers
-    steps:
-      - yarn/run-script:
-          to: 'Lev'
-
-  build:
-    docker:
-      - image: circleci/node:10.16.0-browsers
-
-    working_directory: ~/repo
-
-    steps:
-      # - yarn/update_dependencies
-      # - yarn/jest
-      # - yarn/type-check
-      # - yarn/lint
-      # format
-      # bundlesize
-      - run:
-          name: All JS Packages - Test
-          command: |
-            yarn test:once
-      # - run:
-      #     name: All JS Packages - Typecheck
-      #     command: |
-      #       yarn typecheck
-      # - run:
-      #     name: All JS Packages - Lint
-      #     command: |
-      #       yarn lint
-      # - run:
-      #     name: All JS Packages - Check Format
-      #     command: |
-      #       yarn format:ci
-      # - restore_cache:
-      #     keys:
-      #       - v1-tracker-{{ .Branch }}-
-      #       - v1-tracker-master-
-      #       - v1-tracker-
-      # - run:
-      #     name: '@anonytics/tracker - Build'
-      #     working_directory: ./packages/tracker
-      #     command: |
-      #       yarn build
-      # - save_cache:
-      #     paths:
-      #       - packages/tracker/.rts2_cache_cjs
-      #       - packages/tracker/.rts2_cache_es
-      #       - packages/tracker/.rts2_cache_umd
-      #       - packages/tracker/build
-      #     key: v1-tracker-{{ .Branch }}-{{ epoch }}
-      # - run:
-      #     name: '@anonytics/tracker - Check Bundle Size'
-      #     command: |
-      #       yarn bundlesize
-
 workflows:
   version: 2
   build-n-test:
@@ -76,12 +17,12 @@ workflows:
           name: lint
       - yarn/run:
           script: format:ci
-          name: check-format
+          name: prettier
       - yarn/run:
           script: build
           name: build
       - yarn/run:
           script: bundlesize
-          name: check-bundlesize
+          name: bundlesize
           requires:
             - build
