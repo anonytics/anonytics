@@ -15,6 +15,7 @@
     "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,md,yml,html}\"",
     "format:ci": "prettier --list-different \"./**/*.{js,jsx,ts,tsx,json,md,yml,html}\"",
     "typecheck": "yarn workspaces run typecheck",
+    "bundlesize": "bundlesize",
     "ok": "alex && yarn format && yarn lint && yarn typecheck && yarn test:once",
     "clear-modules": "rimraf **/node_modules"
   },
@@ -37,6 +38,7 @@
     "@typescript-eslint/parser": "^1.11.0",
     "alex": "^7.1.0",
     "babel-jest": "^24.8.0",
+    "bundlesize": "^0.18.0",
     "eslint": "^6.0.1",
     "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-prettier": "^3.1.0",
