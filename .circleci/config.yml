@@ -17,19 +17,32 @@ jobs:
       - run: yarn bundlesize
 workflows:
   version: 2
-  test-n-build:
+  update-cache:
     jobs:
       - yarn/update-cache:
           name: update-cache
+  test:
+    jobs:
       - yarn/jest:
           name: jest
+  type-check:
+    jobs:
       - yarn/type-check:
           name: type-check
+  lint:
+    jobs:
       - yarn/lint:
           name: lint
+  prettier:
+    jobs:
       - yarn/run:
           script: format:ci
           name: prettier
+  alex:
+    jobs:
       - yarn/run:
           script: alex
+          name: prettier
+  build-n-bundlesize:
+    jobs:
       - build-n-bundlesize
