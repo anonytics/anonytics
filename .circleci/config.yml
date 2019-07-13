@@ -37,7 +37,7 @@ workflows:
       - yarn/run:
           script: format:ci
           name: prettier
-      - build-bundlesize
+      - build-n-bundlesize
       # - bundlesize:
       #     requires:
       #       - build
