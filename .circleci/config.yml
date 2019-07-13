@@ -11,7 +11,7 @@ jobs:
   build:
     executor: node
     steps:
-      - run: yarn/setup
+      - yarn/setup
       - yarn/run-script:
           script: build
       - persist_to_workspace:
@@ -23,7 +23,7 @@ jobs:
     steps:
       - attach_workspace:
           at: .
-      - run: yarn/setup
+      - yarn/setup
       - yarn/run-script:
           script: bundlesize
 workflows:
