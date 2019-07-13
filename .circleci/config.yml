@@ -11,21 +11,19 @@ jobs:
   build:
     executor: node
     steps:
-      - yarn/setup
       - yarn/run-script:
           script: build
       - persist_to_workspace:
-          root: .
+          root: ./packages
           paths:
-            - ./packages/tracker/build
+            - ./tracker/build
   bundlesize:
     executor: node
     steps:
       - attach_workspace:
-          at: .
-      - yarn/setup
+          at: /tmp/workspace
       - yarn/run-script:
-          script: bundlesize
+          script: bundlesize --config bundlesize.config.ci.json
 workflows:
   version: 2
   test-n-build:

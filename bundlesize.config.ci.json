@@ -1,0 +1,8 @@
+{
+  "files": [
+    {
+      "path": "/tmp/workspace/tracker/build/*.js",
+      "maxSize": "700 B"
+    }
+  ]
+}
