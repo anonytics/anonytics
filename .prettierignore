@@ -3,3 +3,6 @@
 
 # Build ouputs
 **/build
+
+# Coverage outputs
+**/coverage

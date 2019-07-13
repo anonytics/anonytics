@@ -11,17 +11,10 @@ jobs:
   build-n-bundlesize:
     executor: node
     steps:
+      # yarn/run-script takes care of installing yarn dependencies, we don't want to do that twice
       - yarn/run-script:
           script: build
-      - yarn/run-script:
-          script: bundlesize
-  bundlesize:
-    executor: node
-    steps:
-      - attach_workspace:
-          at: /tmp/workspace
-      - yarn/run-script:
-          script: bundlesize --config bundlesize.config.ci.json
+      - run: yarn bundlesize
 workflows:
   version: 2
   test-n-build:
@@ -37,7 +30,6 @@ workflows:
       - yarn/run:
           script: format:ci
           name: prettier
+      - yarn/run:
+          script: alex
       - build-n-bundlesize
-      # - bundlesize:
-      #     requires:
-      #       - build
