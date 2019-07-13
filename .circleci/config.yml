@@ -8,15 +8,13 @@ executors:
     docker:
       - image: circleci/node:10
 jobs:
-  build:
+  build-n-bundlesize:
     executor: node
     steps:
       - yarn/run-script:
           script: build
-      - persist_to_workspace:
-          root: ./packages
-          paths:
-            - ./tracker/build
+      - yarn/run-script:
+          script: bundlesize
   bundlesize:
     executor: node
     steps:
@@ -39,7 +37,7 @@ workflows:
       - yarn/run:
           script: format:ci
           name: prettier
-      - build
-      - bundlesize:
-          requires:
-            - build
+      - build-bundlesize
+      # - bundlesize:
+      #     requires:
+      #       - build
