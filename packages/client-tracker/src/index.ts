@@ -80,7 +80,7 @@ export type AnonyticsInitializer = (
 /**
  * Initializer function that must be invoked once before any tracking can occur
  * @param {string} config.host the host to track the events to, eg. 'localhost' or 'mywebsite.io'
- * @param {string} [config.path='/'] an optional path the anonytics server is listening on, eg. '/anonytics'
+ * @param {string} [config.path='/anonytics/track'] an optional path the anonytics server is listening on, eg. '/anonytics'
  * @param {boolean} [config.disableHttpsAndUseInsecureHttp=false] during development, track events over HTTP instead of HTTPS
  * @param {boolean} [config.ignorePageLoad=false] set this to true to disable auto tracking a 'pageLoad' event immediately after initialization
  */
