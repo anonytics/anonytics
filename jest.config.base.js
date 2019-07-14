@@ -6,7 +6,6 @@ https://github.com/facebook/jest/issues/3112#issuecomment-398581705 by @nolazybi
 */
 module.exports = {
   clearMocks: true,
-  collectCoverage: true,
   coveragePathIgnorePatterns: [
     '(tests/.*.mock).(jsx?|tsx?)$',
     '/node_modules/',

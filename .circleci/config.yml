@@ -3,6 +3,7 @@
 version: 2.1
 orbs:
   yarn: artsy/yarn@2.0.0
+  codecov: codecov/codecov@1.0.5
 executors:
   node:
     docker:
@@ -15,22 +16,28 @@ jobs:
       - yarn/run-script:
           script: build
       - run: yarn bundlesize
+  test-w-coverage:
+    executor: node
+    steps:
+      - yarn/run-script:
+          script: test:coverage
+      - codecov/upload:
+          file: ./coverage/coverage-final.json
 workflows:
   version: 2
   all-checks-and-build:
     jobs:
       - yarn/update-cache:
           name: update-cache
-      - yarn/jest:
-          name: jest
-      - yarn/type-check:
-          name: type-check
-      - yarn/lint:
-          name: lint
-      - yarn/run:
-          script: format:ci
-          name: prettier
       - yarn/run:
           script: alex
           name: alex
+      - yarn/run:
+          script: format:ci
+          name: prettier
+      - yarn/lint:
+          name: lint
+      - yarn/type-check:
+          name: type-check
+      - test-w-coverage
       - build-n-bundlesize
