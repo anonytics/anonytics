@@ -37,6 +37,9 @@ workflows:
       - yarn/update-cache:
           name: update-cache
       - yarn/run:
+          script: all-contributors check
+          name: check-all-contributors
+      - yarn/run:
           script: alex
           name: alex
       - yarn/run:
