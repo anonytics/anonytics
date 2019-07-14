@@ -5,5 +5,5 @@ const baseConfig = require('../../jest.config.base.js');
 
 module.exports = {
   ...baseConfig,
-  displayName: '@anonytics/tracker',
+  displayName: '@anonytics/client-tracker',
 };

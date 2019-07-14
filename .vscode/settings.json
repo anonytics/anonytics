@@ -3,7 +3,7 @@
   "eslint.enable": true,
   "eslint.workingDirectories": [
     {
-      "directory": "./packages/tracker",
+      "directory": "./packages/client-tracker",
       "changeProcessCWD": true
     },
     {

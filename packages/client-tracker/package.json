@@ -1,5 +1,5 @@
 {
-  "name": "@anonytics/tracker",
+  "name": "@anonytics/client-tracker",
   "version": "0.1.0",
   "description": "The light-weight package that securely collects and sends anonymous user data to Anonytics servers",
   "repository": "https://github.com/anonytics/anonytics-javascript",
@@ -14,9 +14,9 @@
   "scripts": {
     "build": "microbundle --name anon",
     "start": "microbundle watch --name anon",
-    "test": "cd ../../ && jest --projects packages/tracker --watch",
-    "test:once": "cd ../../ && jest --projects packages/tracker",
-    "test:branch": "cd ../../ && jest --projects packages/tracker --changedSince=master",
+    "test": "yarn test:once --watch",
+    "test:once": "cd ../../ && jest --projects packages/client-tracker",
+    "test:branch": "yarn test:once --changedSince=master",
     "lint": "eslint \"src/**/*.ts\"",
     "format": "prettier --write \"./{src/**/*,*}.{js,jsx,ts,tsx,json,md,yml}\"",
     "type-check": "tsc --noEmit"

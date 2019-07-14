@@ -7,7 +7,7 @@
 
   <body>
     <h1>Hello</h1>
-    <!-- Insert anonytics tracker at the end of the <body> tag -->
+    <!-- Insert anonytics client-tracker at the end of the <body> tag -->
 
     <!-- If support for IE is required, 'fetch' needs to be polyfilled like below, see https://caniuse.com/#feat=fetch -->
     <script
@@ -16,10 +16,10 @@
     ></script>
 
     <!-- USE THIS DURING ANONYTICS DEVELOPMENT -->
-    <script src="../../packages/tracker/build/index.umd.js"></script>
+    <script src="../../packages/client-tracker/build/index.umd.js"></script>
 
     <!-- USE THIS INSTEAD FOR ACTUAL ANONYTICS USAGE -->
-    <!-- <script src="https://unpkg.com/@anonytics/tracker@^0.1/index.umd.js"></script> -->
+    <!-- <script src="https://unpkg.com/@anonytics/client-tracker@^0.1/index.umd.js"></script> -->
 
     <script>
       anon.init({

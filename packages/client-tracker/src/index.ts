@@ -1,5 +1,5 @@
 /**
- * The URL that the tracker POSTs to.
+ * The URL that the client-tracker POSTs to.
  * This is set when init() is called
  */
 let trackingUrl: string;
