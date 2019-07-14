@@ -12,7 +12,7 @@
     "test": "jest --watch",
     "test:once": "jest",
     "test:branch": "jest --changedSince=master",
-    "test:coverage": "jest --coverage",
+    "test:ci": "jest --maxWorkers=4 --reporters=default --reporters=jest-junit --coverage",
     "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,md,yml,html}\"",
     "format:ci": "prettier --list-different \"./**/*.{js,jsx,ts,tsx,json,md,yml,html}\"",
     "type-check": "yarn workspaces run type-check",
