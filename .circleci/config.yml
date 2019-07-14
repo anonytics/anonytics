@@ -2,7 +2,7 @@
 # see discussion in https://discuss.circleci.com/t/circle-2-0-caching-is-too-limited-to-be-very-useful/11694
 version: 2.1
 orbs:
-  yarn: artsy/yarn@2.0.0
+  yarn: artsy/yarn@2.1.0
   codecov: codecov/codecov@1.0.5
 executors:
   node:
@@ -16,13 +16,15 @@ jobs:
       - yarn/run-script:
           script: build
       - run: yarn bundlesize
-  test-w-coverage:
-    executor: node
-    steps:
-      - yarn/run-script:
-          script: test:coverage
-      - codecov/upload:
-          file: ./coverage/coverage-final.json
+  # test-w-coverage:
+  #   executor: node
+  #   steps:
+  #     - yarn/jest:
+  #         args: --maxWorkers=4 --coverage
+  #     - codecov/upload:
+  #         file: ./coverage/coverage-final.json
+  #     - store_artifacts:
+  # path: ./coverage
 workflows:
   version: 2
   all-checks-and-build:
@@ -39,5 +41,12 @@ workflows:
           name: lint
       - yarn/type-check:
           name: type-check
-      - test-w-coverage
+      - yarn/jest:
+          name: jest
+          args: --maxWorkers=4 --coverage
+          steps:
+            - codecov/upload:
+                file: ./coverage/coverage-final.json
+            - store_artifacts:
+                path: ./coverage
       - build-n-bundlesize
