@@ -18,7 +18,12 @@
       "contributions": [
         "code",
         "doc",
-        "test"
+        "test",
+        "example",
+        "ideas",
+        "infra",
+        "projectManagement",
+        "review"
       ]
     }
   ],
