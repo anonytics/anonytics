@@ -31,9 +31,9 @@ describe('Tracker', () => {
     init({ host: 'localhost' });
     const testEventContext = { testKey: 'testValue' };
 
-    // Assert - page load has been sent to server with pathname
+    // Assert - page load has been sent to default server with pathname
     expect(fetchMock).toBeCalledTimes(1);
-    expect(fetchMock).toBeCalledWith('https://localhost/', {
+    expect(fetchMock).toBeCalledWith('https://localhost/anonytics/track', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ describe('Tracker', () => {
 
     // Assert - event has been sent to server
     expect(fetchMock).toBeCalledTimes(2);
-    expect(fetchMock).nthCalledWith(2, 'https://localhost/', {
+    expect(fetchMock).nthCalledWith(2, 'https://localhost/anonytics/track', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -108,7 +108,7 @@ describe('Tracker', () => {
 
     // Assert - event has been sent to server at specific path
     expect(fetchMock).toBeCalledTimes(1);
-    expect(fetchMock).toBeCalledWith('http://localhost/', {
+    expect(fetchMock).toBeCalledWith('http://localhost/anonytics/track', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -122,7 +122,7 @@ describe('Tracker', () => {
   it('should throw if trying to track without initializing first', async () => {
     // Act & Assert - track an event and expect it to throw because Anonytics has not been initialized
     await expect(track('testEvent')).rejects.toThrowError(
-      'Cannot track an Anonytics event before it has been initialized. Please invoke the init() one time before tracking first.',
+      'Cannot track an Anonytics event before it has been initialized. Please invoke init() one time before tracking first.',
     );
   });
 
