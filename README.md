@@ -15,7 +15,7 @@ More great things to come soon...
 Thanks goes to these wonderful people
 ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
-<!-- markdownlint-disable no-inline-html line-length -->
+<!-- markdownlint-disable -->
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
 <table>
@@ -25,7 +25,7 @@ Thanks goes to these wonderful people
 </table>
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
-<!-- markdownlint-enable no-inline-html line-length-->
+<!-- markdownlint-enable -->
 
 This project follows the
 [all-contributors](https://github.com/all-contributors/all-contributors)
