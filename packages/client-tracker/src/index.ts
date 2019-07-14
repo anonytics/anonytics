@@ -48,7 +48,7 @@ export const track: AnonyticsTracker = async (
 ): Promise<void> => {
   if (!trackingUrl) {
     throw new Error(
-      'Cannot track an Anonytics event before it has been initialized. Please invoke the init() one time before tracking first.',
+      'Cannot track an Anonytics event before it has been initialized. Please invoke init() one time before tracking first.',
     );
   }
   if (isDoNotTrackEnabled()) {
@@ -86,7 +86,7 @@ export type AnonyticsInitializer = (
  */
 export const init: AnonyticsInitializer = async ({
   host,
-  path = '/',
+  path = '/anonytics/track',
   ignorePageLoad = false,
   disableHttpsAndUseInsecureHttp = false,
 }): Promise<void> => {
