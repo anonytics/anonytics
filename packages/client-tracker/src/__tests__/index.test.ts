@@ -1,4 +1,3 @@
-// import { init, track } from '..';
 import { GlobalWithFetchMock } from 'jest-fetch-mock';
 import { AnonyticsTracker, AnonyticsInitializer } from '..';
 

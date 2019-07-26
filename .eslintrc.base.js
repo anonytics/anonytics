@@ -24,5 +24,20 @@ module.exports = {
       },
     },
   ],
-  rules: { 'no-console': 'error' },
+  rules: {
+    'no-console': 'error',
+    '@typescript-eslint/explicit-function-return-type': [
+      'error',
+      { allowExpressions: true },
+      { allowTypedFunctionExpressions: true },
+    ],
+    'unicorn/prevent-abbreviations': [
+      'error',
+      {
+        whitelist: {
+          getInitialProps: true,
+        },
+      },
+    ],
+  },
 };
