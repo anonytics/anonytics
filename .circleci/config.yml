@@ -1,0 +1,53 @@
+# For a deeper explanation of the caching strategy,
+# see discussion in https://discuss.circleci.com/t/circle-2-0-caching-is-too-limited-to-be-very-useful/11694
+version: 2.1
+orbs:
+  yarn: artsy/yarn@2.1.0
+  codecov: codecov/codecov@1.0.5
+executors:
+  node:
+    docker:
+      - image: circleci/node:10
+jobs:
+  build-n-bundlesize:
+    executor: node
+    steps:
+      # yarn/run-script takes care of installing yarn dependencies, we don't want to do that twice
+      - yarn/run-script:
+          script: build
+      - run: yarn bundlesize
+  test:
+    executor: node
+    environment:
+      JEST_JUNIT_OUTPUT: reports/jest/results.xml
+    steps:
+      - yarn/run-script:
+          # creates Junit reports and code coverage
+          script: test:ci
+      - codecov/upload:
+          file: ./coverage/coverage-final.json
+      - store_test_results:
+          path: ./reports
+      - store_artifacts:
+          path: ./coverage
+workflows:
+  version: 2
+  all-checks-and-build:
+    jobs:
+      - yarn/update-cache:
+          name: update-cache
+      - yarn/run:
+          script: all-contributors check
+          name: check-all-contributors
+      - yarn/run:
+          script: alex
+          name: alex
+      - yarn/run:
+          script: format:ci
+          name: prettier
+      - yarn/lint:
+          name: lint
+      - yarn/type-check:
+          name: type-check
+      - test
+      - build-n-bundlesize

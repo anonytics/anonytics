@@ -3,6 +3,6 @@
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
     "davidanson.vscode-markdownlint",
-    "shinnn.alex"
+    "knisterpeter.vscode-commitizen"
   ]
 }

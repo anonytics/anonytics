@@ -6,10 +6,18 @@
   "author": "Jeppe Reinhold <jeppereinhold@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "typecheck": "tsc --noEmit",
-    "lint:md": "yarn markdownlint \"**/*.md\" -i \"**/node_modules/**/*\"",
-    "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,md,yml}\"",
-    "ok": "yarn alex && yarn format"
+    "build": "yarn workspaces run build",
+    "lint:md": "markdownlint \"**/*.md\" -i \"**/node_modules/**/*\"",
+    "lint": "yarn workspaces run lint && yarn lint:md",
+    "test": "jest --watch",
+    "test:once": "jest",
+    "test:branch": "jest --changedSince=master",
+    "test:ci": "jest --maxWorkers=4 --reporters=default --reporters=jest-junit --coverage",
+    "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,json,md,yml,html}\"",
+    "format:ci": "prettier --list-different \"./**/*.{js,jsx,ts,tsx,json,md,yml,html}\"",
+    "type-check": "yarn workspaces run type-check",
+    "validate": "alex && yarn format && yarn lint && yarn type-check && yarn test:once",
+    "clear-modules": "rimraf **/node_modules"
   },
   "private": true,
   "workspaces": [
@@ -22,11 +30,34 @@
     }
   },
   "devDependencies": {
+    "@babel/core": "^7.5.0",
+    "@babel/preset-env": "^7.5.0",
+    "@babel/preset-typescript": "^7.3.3",
+    "@types/jest": "^24.0.15",
+    "@typescript-eslint/eslint-plugin": "^1.11.0",
+    "@typescript-eslint/parser": "^1.11.0",
     "alex": "^7.1.0",
+    "all-contributors-cli": "^6.8.1",
+    "babel-jest": "^24.8.0",
+    "bundlesize": "^0.18.0",
+    "commitizen": "^4.0.3",
+    "cz-conventional-changelog": "^3.0.2",
+    "eslint": "^6.0.1",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-unicorn": "^9.1.1",
     "husky": "^2.7.0",
+    "jest": "^24.8.0",
+    "jest-junit": "^6.4.0",
     "markdownlint-cli": "^0.17.0",
     "prettier": "^1.18.2",
     "pretty-quick": "^1.11.1",
+    "rimraf": "^2.6.3",
     "typescript": "^3.5.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }

@@ -1,9 +1,0 @@
-{
-  "name": "@anonytics/informer",
-  "version": "0.1.0",
-  "description": "The light-weight package that securely collects and sends anonymous user data to Anonytics servers",
-  "repository": "https://github.com/anonytics/anonytics-javascript",
-  "author": "Jeppe Reinhold <jeppereinhold@gmail.com>",
-  "license": "MIT",
-  "private": false
-}

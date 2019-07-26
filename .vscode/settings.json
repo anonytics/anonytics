@@ -1,0 +1,18 @@
+{
+  "eslint.packageManager": "yarn",
+  "eslint.enable": true,
+  "eslint.workingDirectories": [
+    {
+      "directory": "./packages/client-tracker",
+      "changeProcessCWD": true
+    },
+    {
+      "directory": "./packages/server",
+      "changeProcessCWD": true
+    },
+    {
+      "directory": "./packages/viewer",
+      "changeProcessCWD": true
+    }
+  ]
+}

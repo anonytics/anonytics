@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Anonytics Plain HTML Example</title>
+  </head>
+
+  <body>
+    <h1>Hello</h1>
+    <!-- Insert anonytics client-tracker at the end of the <body> tag -->
+
+    <!-- If support for IE is required, 'fetch' needs to be polyfilled like below, see https://caniuse.com/#feat=fetch -->
+    <script
+      nomodule
+      crossorigin="anonymous"
+      src="https://polyfill.io/v3/polyfill.min.js?flags=gated&features=fetch"
+    ></script>
+
+    <!-- USE THIS DURING ANONYTICS DEVELOPMENT -->
+    <script src="../../packages/client-tracker/build/index.umd.js"></script>
+
+    <!-- USE THIS INSTEAD FOR ACTUAL ANONYTICS USAGE -->
+    <!-- <script src="https://unpkg.com/@anonytics/client-tracker@^0.1/index.umd.js"></script> -->
+
+    <script>
+      anon.init({
+        host: 'my.anonytics-server.io',
+      });
+    </script>
+
+    <!-- End of Anonytics part -->
+  </body>
+</html>

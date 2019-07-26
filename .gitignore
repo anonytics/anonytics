@@ -1,3 +1,12 @@
+# Caches of any kind
+**/.rts2_cache_*
+
+# Build ouputs
+**/build
+
+
+# ---------- EVERYTHING BELOW IS GENERATED FROM gitignore.io
+
 # Created by https://www.gitignore.io/api/node,linux,macos,windows,jetbrains,sublimetext,visualstudiocode
 # Edit at https://www.gitignore.io/?templates=node,linux,macos,windows,jetbrains,sublimetext,visualstudiocode
 

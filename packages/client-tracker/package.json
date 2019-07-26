@@ -1,0 +1,28 @@
+{
+  "name": "@anonytics/client-tracker",
+  "version": "0.1.0",
+  "description": "The light-weight package that securely collects and sends anonymous user data to Anonytics servers",
+  "repository": "https://github.com/anonytics/anonytics-javascript",
+  "author": "Jeppe Reinhold <jeppereinhold@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "source": "src/index.ts",
+  "main": "build/index.js",
+  "umd:main": "build/index.umd.js",
+  "module": "build/index.m.js",
+  "types": "build/index.d.ts",
+  "scripts": {
+    "build": "microbundle --name anon",
+    "start": "microbundle watch --name anon",
+    "test": "yarn test:once --watch",
+    "test:once": "cd ../../ && jest --projects packages/client-tracker",
+    "test:branch": "yarn test:once --changedSince=master",
+    "lint": "eslint \"src/**/*.ts\"",
+    "format": "prettier --write \"./{src/**/*,*}.{js,jsx,ts,tsx,json,md,yml}\"",
+    "type-check": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "jest-fetch-mock": "^2.1.2",
+    "microbundle": "^0.11.0"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "files": [
+    {
+      "path": "./packages/client-tracker/build/*.js",
+      "maxSize": "700 B"
+    }
+  ]
+}

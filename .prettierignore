@@ -1,0 +1,8 @@
+# Caches of any kind
+**/.rts2_cache_*
+
+# Build ouputs
+**/build
+
+# Coverage outputs
+**/coverage

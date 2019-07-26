@@ -1,0 +1,9 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "target": "es2017", // node.js v8 and above
+    "module": "commonjs",
+    "lib": []
+  },
+  "include": ["src"]
+}
