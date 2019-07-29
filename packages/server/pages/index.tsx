@@ -1,12 +1,13 @@
 import fetch from 'isomorphic-unfetch';
-import { NextComponentType, NextPageContext } from 'next';
+import { NextPage } from 'next';
+
 interface Props {
   users: {
     name: string;
   }[];
 }
 
-const Index: NextComponentType<NextPageContext, Props, Props> = ({ users }) => (
+const Index: NextPage<Props> = ({ users }) => (
   <div>
     {users.map((user, i) => (
       <div key={i}>{user.name}</div>
